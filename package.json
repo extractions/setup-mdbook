@@ -1,6 +1,6 @@
 {
   "name": "setup-mdbook",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Install mdBook. Create a book from markdown files.",
   "main": "dist/index.js",
   "scripts": {
