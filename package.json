@@ -1,0 +1,35 @@
+{
+  "name": "setup-mdbook",
+  "version": "0.1.0",
+  "description": "Install mdBook. Create a book from markdown files.",
+  "main": "dist/index.js",
+  "scripts": {
+    "fmt": "node node_modules/.bin/prettier --write **/*.ts",
+    "lint": "node node_modules/.bin/eslint **/*.ts",
+    "build": "rm -rf dist/ && ncc build src/index.ts --minify",
+    "run": "npm run build && RUNNER_TOOL_CACHE=./runner/cache RUNNER_TEMP=./runner/temp node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/extractions/setup-mdbook.git"
+  },
+  "author": "Ross MacArthur <ross@macarthur.io>",
+  "license": "MIT OR Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/extractions/setup-mdbook/issues"
+  },
+  "homepage": "https://github.com/extractions/setup-mdbook#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@extractions/setup-crate": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.6",
+    "@types/semver": "^7.3.4",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "eslint": "^7.10.0",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.3"
+  }
+}

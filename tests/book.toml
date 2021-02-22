@@ -1,0 +1,6 @@
+[book]
+authors = ["Ross MacArthur"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Test"

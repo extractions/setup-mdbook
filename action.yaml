@@ -1,0 +1,12 @@
+name: 'Setup mdBook'
+author: 'Ross MacArthur'
+description: 'Install mdBook. Create a book from markdown files.'
+branding:
+  icon: 'play'
+  color: 'red'
+inputs:
+  mdbook-version:
+    description: 'A valid semver specifier of the mdBook version to install'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

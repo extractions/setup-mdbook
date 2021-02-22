@@ -1,0 +1,55 @@
+name: build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install --global @zeit/ncc
+    - run: npm ci
+    - run: npm run lint
+    - run: npm run build
+
+  test-latest:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup mdBook
+      uses: ./
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Test
+      shell:
+        bash
+      run: |
+        mdbook build tests && [ -d tests/book ]
+
+  test-version:
+    needs: test-latest
+    strategy:
+      matrix:
+        mdbook-version: [0.3.7, 0.4.6]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run self
+      uses: ./
+      with:
+        mdbook-version: ${{ matrix.mdbook-version }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Check version
+      run: mdbook --version | grep "^mdbook v${{ matrix.mdbook-version }}$"
+    - name: Test
+      shell:
+        bash
+      run: |
+        mdbook build tests && [ -d tests/book ]
