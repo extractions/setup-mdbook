@@ -1,3 +1,15 @@
+### No longer maintained
+
+Use [setup-crate](https://github.com/extractions/setup-crate) instead. For
+example:
+
+```yaml
+- uses: extractions/setup-crate@v1
+  with:
+    owner: rust-lang
+    name: mdBook
+```
+
 # `setup-mdbook` action
 
 ![build](https://img.shields.io/github/workflow/status/extractions/setup-mdbook/build)
